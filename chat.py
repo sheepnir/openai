@@ -1,13 +1,40 @@
 # Importing the OpenAI library to interact with the OpenAI API.
 from openai import OpenAI
 
+def load_properties(filepath):
+    # Initialize an empty dictionary to store properties
+    props = {}
+
+    # Open the properties file for reading
+    with open(filepath, "r") as f:
+        # Iterate over each line in the file
+        for line in f:
+            # Strip whitespace from the beginning and end of the line
+            line = line.strip()
+
+            # Ignore empty lines and lines that start with a '#' (comments)
+            if line and not line.startswith("#"):
+                # Split the line into key and value at the first '='
+                key_value = line.split("=", 1)
+
+                # Check if the line is properly formatted with a key and value
+                if len(key_value) == 2:
+                    # Assign the key-value pair to the dictionary
+                    # Also stripping any leading/trailing whitespace from key and value
+                    props[key_value[0].strip()] = key_value[1].strip()
+
+    # Return the dictionary containing all the properties
+    return props
+
+
 # Defining the main function that encapsulates our chat functionality.
 def main():
+    # Load configuration properties
+    config = load_properties("configuration.properties")
+    system_content = config.get("system_content", "Default system content")
+
     # Initializing the OpenAI client.
     client = OpenAI()
-
-    # Defining the system's role and its expertise.
-    system_content = "You are a fitness expert in men over 40 with shoulder pain"
 
     # Initializing chat_record as an empty list to store the chat history.
     chat_record = []
