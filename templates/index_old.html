@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flask Chat App</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
+    <h1>{{ message }}</h1>
+
+    <!-- Chat bubble for the AI -->
+    <div class="container darker">
+      <!-- Reference to the AI avatar image -->
+      <img
+        src="{{ url_for('static', filename='ai.png') }}"
+        alt="AI Avatar"
+        class="right"
+      />
+      <p>Hey! I'm fine. Thanks for asking!</p>
+      <span class="time-left">11:01</span>
+    </div>
+
+    <!-- Chat bubble for the user -->
+    <div class="container">
+      <!-- Reference to the user avatar image -->
+      <img
+        src="{{ url_for('static', filename='user.png') }}"
+        alt="User Avatar"
+      />
+      <p>Hello. How are you today?</p>
+      <span class="time-right">11:00</span>
+    </div>
+
+    <!-- Add more chat bubbles as needed here -->
+  </body>
+</html>

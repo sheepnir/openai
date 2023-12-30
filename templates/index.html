@@ -6,35 +6,67 @@
     <title>Flask Chat App</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='style.css') }}"
+      href="{{ url_for('static', filename='chat_style.css') }}"
     />
   </head>
   <body>
-    <h1>{{ message }}</h1>
+    <section class="msger">
+      <header class="msger-header">
+        <div class="msger-header-title">
+          <i class="fas fa-comment-alt"></i> SimpleChat
+        </div>
+        <div class="msger-header-options">
+          <span><i class="fas fa-cog"></i></span>
+        </div>
+      </header>
 
-    <!-- Chat bubble for the AI -->
-    <div class="container darker">
-      <!-- Reference to the AI avatar image -->
-      <img
-        src="{{ url_for('static', filename='ai.png') }}"
-        alt="AI Avatar"
-        class="right"
-      />
-      <p>Hey! I'm fine. Thanks for asking!</p>
-      <span class="time-left">11:01</span>
-    </div>
+      <main class="msger-chat">
+        <!-- AI Message -->
+        <div class="msg left-msg">
+          <div
+            class="msg-img"
+            style="background-image: url('{{ url_for('static', filename='ai.png') }}')"
+          ></div>
 
-    <!-- Chat bubble for the user -->
-    <div class="container">
-      <!-- Reference to the user avatar image -->
-      <img
-        src="{{ url_for('static', filename='user.png') }}"
-        alt="User Avatar"
-      />
-      <p>Hello. How are you today?</p>
-      <span class="time-right">11:00</span>
-    </div>
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">AI</div>
+              <div class="msg-info-time">12:45</div>
+            </div>
 
-    <!-- Add more chat bubbles as needed here -->
+            <div class="msg-text">
+              Hi, welcome to SimpleChat! Go ahead and send me a message. 😄
+            </div>
+          </div>
+        </div>
+
+        <!-- User Message -->
+        <div class="msg right-msg">
+          <div
+            class="msg-img"
+            style="background-image: url('{{ url_for('static', filename='user.png') }}')"
+          ></div>
+
+          <div class="msg-bubble">
+            <div class="msg-info">
+              <div class="msg-info-name">User</div>
+              <div class="msg-info-time">12:46</div>
+            </div>
+
+            <div class="msg-text">You can change your name in JS section!</div>
+          </div>
+        </div>
+      </main>
+
+      <form class="msger-inputarea">
+        <input
+          type="text"
+          class="msger-input"
+          placeholder="Enter your message..."
+        />
+        <button type="submit" class="msger-send-btn">Send</button>
+      </form>
+    </section>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
   </body>
 </html>
